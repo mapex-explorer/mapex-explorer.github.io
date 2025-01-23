@@ -303,6 +303,30 @@
     </div>
   </section>
 
+  <style>
+    #blocks {
+        width:100%;
+        height:60px;
+        margin:0 auto;
+    }
+    #block1 {
+        height:33.33%;
+        width:30%;
+        float: left;
+    }
+    #block2 {
+        height:33.33%;
+        width:40%;
+        float: left;
+    }
+    #block3 {
+        height:33.33%;
+        width:30%;
+        float: right;
+    }
+  </style>
+  
+
 
   <footer class="footer">
     <div class="container">
@@ -332,6 +356,73 @@
       </div>
     </div>
   </footer>
+
+  <!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+        <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website adapted from the Nerfies templates, which is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            If you use the <a href="https://github.com/AnyLoc/AnyLoc.github.io">source code</a> of this website,
+            please also link back to the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies source code</a> in your footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+<!-- <script>
+  function showContent(option) {
+    const contentDiv = document.getElementById("dynamic-content");
+    let content = "";
+
+    switch (option) {
+      case 1:
+        content = `<p>Option 1 content: This is the description for the first option. It's tailored to give more details on this specific choice.</p>`;
+        break;
+      case 2:
+        content = `<p>Option 2 content: Here's what you need to know about the second option. It provides an alternative perspective.</p>`;
+        break;
+      case 3:
+        content = `<p>Option 3 content: The third option focuses on a different set of features and benefits, perfect for certain scenarios.</p>`;
+        break;
+      default:
+        content = `<p>Select an option to see more details.</p>`;
+    }
+
+    contentDiv.innerHTML = content;
+  }
+</script> -->
+
+<script>
+  function showContent(option,section) {
+    // Remove the active class from all sections
+    // const parentContainer = document.getElementById(`dynamic-content-${section}`);
+
+    const button = event.target;
+    const parentContainer = button.closest(".hero");
+
+    // Remove the active class from all content sections within this container
+    const sections = parentContainer.querySelectorAll(".content-section");
+    sections.forEach(contentSection => {
+      contentSection.classList.remove("active");
+    });
+
+    // Add the active class to the selected section
+    const selectedSection = document.getElementById(`content-${section}-${option}`);
+    if (selectedSection) {
+      selectedSection.classList.add("active");
+    }
+  }
+</script>
 
 </body>
 
