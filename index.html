@@ -247,7 +247,7 @@
           <source src="./assets/fig1-video.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          caption
+          MapEx is a new framework that uses predicted maps for indoor exploration. Our key insight is to calculate probabilistic information gain that jointly reasons on sensor coverage and uncertainty.
         </h2>
       </div>
     </div>
@@ -324,7 +324,7 @@
           <div class="content has-text-justified">
             <img source src="assets/mapex_pipeline.png" />
             <p>
-              MapEx pipeline
+              Our exploration approach estimates probabilistic information gain from predicted maps to use in a frontier explorer. First, a robot accumulates its observations into a top-down observed occupancy map which is then passed to an ensemble of map predictors to generate multiple map predictions. For each possible frontier, information gain is calculated from the mean and variance of the predicted maps. Finally, the frontier with the highest reward is chosen as the next goal.
             </p>
           </div>
         </div>
