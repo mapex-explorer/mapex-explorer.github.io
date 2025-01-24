@@ -309,21 +309,20 @@
             </div>
             <div id="dynamic-content">
               <div class="content-section active" id="content-1-1">
-                <!-- <h2 class="title is-3">Autonomy Course</h2> -->
                 <div class="content has-text-justified">
-                  <p>Example of map predictions</p>
+                  <p>Given the observed occupancy grid maps, our LaMa model predictor can generate reasonable predicted maps that are close to the ground-truth maps. These predictions are used in MapEx for viewpoint scoring. </p>
                   <img src="assets/map-prediction-examples.png" alt="Map predictions" />
                 </div>
               </div>
               <div class="content-section" id="content-1-2">
                 <div class="content has-text-justified">
-                  <p>Example of frontier scoring</p>
+                  <p>We show examples of MapEx frontier scoring. MapEx jointly reasons on sensor coverage and uncertainty to guide predictions. The left image shows a top-scoring frontier with high sensor coverage with medium uncertainty. In contrast, the right image presents a scenario where MapEx selects a frontier that covers smaller area but has high uncertainty, rather than the one with higher coverage but less potential for learning.</p>
                   <img src="assets/frontier-scoring.png" alt="Frontier scoring" />
                 </div>
               </div>
               <div class="content-section" id="content-1-3">
                 <div class="content has-text-justified">
-                  <p>Mapex vs Baselines</p>
+                  <p>MapEx explores the map best resulting in the most accurate predicted map. In contrast, UPEN which optimizes for high variance without sensor coverage, searches a limited area. IG-Hector only considers sensor coverage and does not explore sufficiently at the start due to inadequate map predictions.</p>
                   <video controls autoplay loop muted width="100%">
                     <source src="assets/mapex-upen-ighector-video.mp4" type="video/mp4">
                   </video>
@@ -331,8 +330,8 @@
               </div>
               <div class="content-section" id="content-1-4">
                 <div class="content has-text-justified">
-                  <p>Metric</p>
-                  <img src="static/images/mia_summary.jpg" alt="Metrics" />
+                  <p>MapEx outperforms map prediction-based and nearest exploration planners in terms of Coverage, Predicted IoU, and Topological Understanding metrics.</p>
+                  <img src="assets/Mapex-baselines.png" alt="Metrics" />
                 </div>
               </div>
             </div>
