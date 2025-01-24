@@ -298,13 +298,13 @@
               </div>
               <div class="content-section" id="content-1-2">
                 <div class="content has-text-justified">
-                  <p>Conventional raycasting with only observed occupancy grid map leads to overestimation of potential sensor coverage at the viewpoint (left). Using deterministic raycast with predicted map, the raycast often stops at the predicted map, but if the predictions are not correct, this leads to underestimation of information gain at the viewpoint. We utilize probabilistic raycast on mean(average) predicted map, where each ray starts with an initial accumulated occupancy value 0, and as each ray passes through the pixels of the mean predicted map, it adds the occupancy value of each pixel in the mean map. When this accumulated value reaches a threshold, the raycast stops.</p>
+                  <p>Conventional raycasting using only the observed occupancy grid map tends to overestimate the potential sensor coverage at a given viewpoint (left). Deterministic raycasting with a predicted map can address this issue but often terminates rays prematurely if the predictions are inaccurate, leading to an underestimation of the information gain at the viewpoint (middle). To overcome these limitations, we employ probabilistic raycasting on the mean predicted map. Each ray begins with an initial accumulated occupancy value of 0. As the ray traverses through the pixels of the mean predicted map, it incrementally adds the occupancy value of each pixel. Once the accumulated value reaches a predefined threshold, the raycasting process stops. (right)</p>
                   <img src="assets/raycasts.png" alt="Raycasts" />
                 </div>
               </div>
               <div class="content-section" id="content-1-3">
                 <div class="content has-text-justified">
-                  <p>Visibility masks generated from observed map lead to overestimation of the sensor coverage, and visibility masks generated from deterministic raycast on predicted maps often lead to underestimation. Using probabilistic raycast on mean predicted map, we generate visibility masks, which probabilistically represent the unknown areas estimated to be visible at the viewpoints. We then compute information gain by summing the values of all pixels in the variance(uncertainty) map that also fall within the visibility mask.</p>
+                  <p>Visibility masks generated from the observed map tend to overestimate sensor coverage, while those derived from deterministic raycasting on predicted maps often lead to underestimation. Using probabilistic raycast on the mean predicted map, we generate visibility masks, which probabilistically represent the unknown areas estimated to be visible from the viewpoints. Information gain is then computed by summing the values of all pixels in the variance (uncertainty) map that overlap with the visibility mask.</p>
                   <img src="assets/visibility-masks.png" alt="Visilibity Masks" />
                 </div>
               </div>
