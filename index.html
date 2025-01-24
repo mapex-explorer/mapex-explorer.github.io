@@ -299,13 +299,16 @@
               </div>
               <div class="content-section" id="content-1-2">
                 <div class="content has-text-justified">
-                  <p>Conventional raycasting using only the observed occupancy grid map tends to overestimate the potential sensor coverage at a given viewpoint (left). Deterministic raycasting with a predicted map can address this issue but often terminates rays prematurely if the predictions are inaccurate, leading to an underestimation of the information gain at the viewpoint (middle). To overcome these limitations, we employ probabilistic raycasting on the mean predicted map. Each ray begins with an initial accumulated occupancy value of 0. As the ray traverses through the pixels of the mean predicted map, it incrementally adds the occupancy value of each pixel. Once the accumulated value reaches a predefined threshold, the raycasting process stops (right). </p>
+                  <p><strong>Left: </strong>Conventional raycasting using only the observed occupancy grid map tends to overestimate the potential sensor coverage at a given viewpoint. <br>
+                    <strong>Middle: </strong>Deterministic raycasting with a predicted map can address this issue but often terminates rays prematurely if the predictions are inaccurate, leading to an underestimation of the information gain at the viewpoint. <br>
+                    <strong>Right: </strong>To overcome these limitations, we employ probabilistic raycasting on the mean predicted map. Each ray begins with an initial accumulated occupancy value of 0. As the ray traverses through the pixels of the mean predicted map, it incrementally adds the occupancy value of each pixel. Once the accumulated value reaches a predefined threshold, the raycasting process stops. </p>
                   <img src="assets/raycasts.png" alt="Raycasts" />
                 </div>
               </div>
               <div class="content-section" id="content-1-3">
                 <div class="content has-text-justified">
-                  <p> Given ray end points, we perform a flood-fill algorithm to generate a sensor coverage mask, and then mask out already-observed areas from the sensor coverage mask to generate visibility mask. Using probabilistic raycasting on the mean predicted maps, we generate visibility masks which probabilistically represents the unknown area estimated to be visible at each viewpoint. </p>
+                  <p> Given ray end points, we perform a flood-fill algorithm to generate a sensor coverage mask, and then mask out already-observed areas from the sensor coverage mask to generate a visibility mask. <br>
+                    Using probabilistic raycasting on the mean predicted maps, we generate a visibility mask that probabilistically represents the unknown area estimated to be visible at each viewpoint. </p>
                   <img src="assets/visibility-masks.png" alt="Visibility Masks" />
                 </div>
               </div>
