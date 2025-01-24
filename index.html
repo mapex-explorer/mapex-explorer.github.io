@@ -314,8 +314,10 @@
               </div>
               <div class="content-section" id="content-1-4">
                 <div class="content has-text-justified">
-                  <p> Information Gain</p>
-                  <img src="assets/mapex_pipeline.png" alt="Information Gain" />
+                  <p> We model the uncertainty of the predictions, by computing the pixel-wise variance of ensemble of map predictions. </p>
+                  <img src="assets/variance-map.png" alt="Variance Map" />
+                  <p> To compute the information gain at each viewpoint, we use both the visibility mask generated from probabilistic raycast and the variance map. We sum the values of all pixels in the variance map that also fall within the visibility mask. <br> This probabilistic information gain estimates the potential reduction in uncertainty, not just by considering the size of observable area but also the variance it will cover.</p>
+                  <img src="assets/info-gain.png" alt="Info gain" />
                 </div>
               </div>
             </div>
