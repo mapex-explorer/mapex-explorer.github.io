@@ -280,6 +280,43 @@
 
   <section class="hero is-small">
     <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Map Predictions and Probabilistic Information Gain</h2>
+            <div class="buttons is-centered">
+              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,1)">Map Predictions</button>
+              <button class="button is-link button-shadow" onclick="showContent(2,1)">Raycast</button>
+              <button class="button is-info button-shadow" onclick="showContent(3,1)">Visilibity Mask</button>
+            </div>
+            <div id="dynamic-content">
+              <div class="content-section active" id="content-1-1">
+                <div class="content has-text-justified">
+                  <p>Given the observed occupancy grid maps, our LaMa model predictor can generate reasonable predicted maps that are close to the ground-truth maps. These predictions are used in MapEx for viewpoint scoring. </p>
+                  <img src="assets/map-prediction-examples.png" alt="Map predictions" />
+                </div>
+              </div>
+              <div class="content-section" id="content-1-2">
+                <div class="content has-text-justified">
+                  <p>Conventional raycasting with only observed occupancy grid map leads to overestimation of potential sensor coverage at the viewpoint (left). Using deterministic raycast with predicted map, the raycast often stops at the predicted map, but if the predictions are not correct, this leads to underestimation of information gain at the viewpoint. We utilize probabilistic raycast on mean(average) predicted map, where each ray starts with an initial accumulated occupancy value 0, and as each ray passes through the pixels of the mean predicted map, it adds the occupancy value of each pixel in the mean map. When this accumulated value reaches a threshold, the raycast stops.</p>
+                  <img src="assets/raycasts.png" alt="Raycasts" />
+                </div>
+              </div>
+              <div class="content-section" id="content-1-3">
+                <div class="content has-text-justified">
+                  <p>Visibility masks generated from observed map lead to overestimation of the sensor coverage, and visibility masks generated from deterministic raycast on predicted maps often lead to underestimation. Using probabilistic raycast on mean predicted map, we generate visibility masks, which probabilistically represent the unknown areas estimated to be visible at the viewpoints. We then compute information gain by summing the values of all pixels in the variance(uncertainty) map that also fall within the visibility mask.</p>
+                  <img src="assets/visibility-masks.png" alt="Visilibity Masks" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
@@ -302,25 +339,18 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">Results</h2>
             <div class="buttons is-centered">
-              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,1)">Map Predictions</button>
-              <button class="button is-link button-shadow" onclick="showContent(2,1)">Frontier Scoring</button>
-              <button class="button is-info button-shadow" onclick="showContent(3,1)">MapEx vs Baselines</button>
-              <button class="button is-success button-shadow" onclick="showContent(4,1)">Metrics</button>
+              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,1)">Frontier Scoring</button>
+              <button class="button is-link button-shadow" onclick="showContent(2,1)">MapEx vs Baselines</button>
+              <button class="button is-info button-shadow" onclick="showContent(3,1)">Metrics</button>
             </div>
             <div id="dynamic-content">
-              <div class="content-section active" id="content-1-1">
-                <div class="content has-text-justified">
-                  <p>Given the observed occupancy grid maps, our LaMa model predictor can generate reasonable predicted maps that are close to the ground-truth maps. These predictions are used in MapEx for viewpoint scoring. </p>
-                  <img src="assets/map-prediction-examples.png" alt="Map predictions" />
-                </div>
-              </div>
-              <div class="content-section" id="content-1-2">
+              <div class="content-section" id="content-1-1">
                 <div class="content has-text-justified">
                   <p>We show examples of MapEx frontier scoring. MapEx jointly reasons on sensor coverage and uncertainty to guide predictions. The left image shows a top-scoring frontier with high sensor coverage with medium uncertainty. In contrast, the right image presents a scenario where MapEx selects a frontier that covers smaller area but has high uncertainty, rather than the one with higher coverage but less potential for learning.</p>
                   <img src="assets/frontier-scoring.png" alt="Frontier scoring" />
                 </div>
               </div>
-              <div class="content-section" id="content-1-3">
+              <div class="content-section" id="content-1-2">
                 <div class="content has-text-justified">
                   <p>MapEx explores the map best resulting in the most accurate predicted map. In contrast, UPEN which optimizes for high variance without sensor coverage, searches a limited area. IG-Hector only considers sensor coverage and does not explore sufficiently at the start due to inadequate map predictions.</p>
                   <video controls autoplay loop muted width="100%">
@@ -328,7 +358,7 @@
                   </video>
                 </div>
               </div>
-              <div class="content-section" id="content-1-4">
+              <div class="content-section" id="content-1-3">
                 <div class="content has-text-justified">
                   <p>MapEx outperforms map prediction-based and nearest exploration planners in terms of Coverage, Predicted IoU, and Topological Understanding metrics.</p>
                   <img src="assets/Mapex-baselines.png" alt="Metrics" />
