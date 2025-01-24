@@ -457,27 +457,25 @@
     </div>
   </footer>
 
-<script>
-  function showContent(option,section) {
-      // Remove the active class from all sections
-      // const parentContainer = document.getElementById(`dynamic-content-${section}`);
-
-      const button = event.target;
-      const parentContainer = button.closest(".hero");
-
+  <script>
+    function showContent(option, section) {
+      // Find the parent container based on the current section
+      const parentContainer = document.querySelectorAll('.hero')[section - 1];
+      
       // Remove the active class from all content sections within this container
       const sections = parentContainer.querySelectorAll(".content-section");
       sections.forEach(contentSection => {
         contentSection.classList.remove("active");
       });
-
+  
       // Add the active class to the selected section
       const selectedSection = document.getElementById(`content-${section}-${option}`);
       if (selectedSection) {
         selectedSection.classList.add("active");
       }
     }
-</script>
+  </script>
+  
 
 </body>
 
