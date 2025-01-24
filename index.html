@@ -339,18 +339,18 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">Results</h2>
             <div class="buttons is-centered">
-              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,2)">Frontier Scoring</button>
-              <button class="button is-link button-shadow" onclick="showContent(2,2)">MapEx vs Baselines</button>
-              <button class="button is-info button-shadow" onclick="showContent(3,2)">Metrics</button>
+              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(4,2)">Frontier Scoring</button>
+              <button class="button is-link button-shadow" onclick="showContent(5,2)">MapEx vs Baselines</button>
+              <button class="button is-info button-shadow" onclick="showContent(6,2)">Metrics</button>
             </div>
             <div id="dynamic-content">
-              <div class="content-section" id="content-2-1">
+              <div class="content-section" id="content-2-4">
                 <div class="content has-text-justified">
                   <p>We show examples of MapEx frontier scoring. MapEx jointly reasons on sensor coverage and uncertainty to guide predictions. The left image shows a top-scoring frontier with high sensor coverage with medium uncertainty. In contrast, the right image presents a scenario where MapEx selects a frontier that covers smaller area but has high uncertainty, rather than the one with higher coverage but less potential for learning.</p>
                   <img src="assets/frontier-scoring.png" alt="Frontier scoring" />
                 </div>
               </div>
-              <div class="content-section" id="content-2-2">
+              <div class="content-section" id="content-2-5">
                 <div class="content has-text-justified">
                   <p>MapEx explores the map best resulting in the most accurate predicted map. In contrast, UPEN which optimizes for high variance without sensor coverage, searches a limited area. IG-Hector only considers sensor coverage and does not explore sufficiently at the start due to inadequate map predictions.</p>
                   <video controls autoplay loop muted width="100%">
@@ -358,7 +358,7 @@
                   </video>
                 </div>
               </div>
-              <div class="content-section" id="content-2-3">
+              <div class="content-section" id="content-2-6">
                 <div class="content has-text-justified">
                   <p>MapEx outperforms map prediction-based and nearest exploration planners in terms of Coverage, Predicted IoU, and Topological Understanding metrics.</p>
                   <img src="assets/Mapex-baselines.png" alt="Metrics" />
@@ -457,25 +457,27 @@
     </div>
   </footer>
 
-  <script>
-    function showContent(option, section) {
-      // Find the parent container based on the current section
-      const parentContainer = document.querySelectorAll('.hero')[section - 1];
-      
+<script>
+  function showContent(option,section) {
+      // Remove the active class from all sections
+      // const parentContainer = document.getElementById(`dynamic-content-${section}`);
+
+      const button = event.target;
+      const parentContainer = button.closest(".hero");
+
       // Remove the active class from all content sections within this container
       const sections = parentContainer.querySelectorAll(".content-section");
       sections.forEach(contentSection => {
         contentSection.classList.remove("active");
       });
-  
+
       // Add the active class to the selected section
       const selectedSection = document.getElementById(`content-${section}-${option}`);
       if (selectedSection) {
         selectedSection.classList.add("active");
       }
     }
-  </script>
-  
+</script>
 
 </body>
 
