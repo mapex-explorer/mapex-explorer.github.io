@@ -227,7 +227,7 @@
                 </span>
                 <!-- Video Link. -->
                 <span class="link-block">
-                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <a href="assets/mapex_video.mp4" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="far fa-images"></i>
                     </span>
@@ -243,21 +243,16 @@
 
   <section class="hero abstract_fig">
     <div class="container is-max-desktop">
-      <div class="hero-body">
-        <img src="assets/fig1-image.png" />
-      </div>
-    </div>
-  </section>
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
+      <!-- <div class="hero-body">
+        <img src="assets/mapex_abstract_fig.jpg" />
+      </div> -->
         <video id="mapex_fig1_video" autoplay controls muted loop playsinline height="100%">
-          <source src="./assets/fig1-video.mp4" type="video/mp4">
+          <source src="./assets/mapex_fig1_cartoon_video.mp4" type="video/mp4">
         </video>
         <h2 class="subtitle has-text-centered">
-          MapEx is a new framework that uses predicted maps for indoor exploration. Our key insight is to calculate probabilistic information gain that jointly reasons on sensor coverage and uncertainty.
+          MapEx is a new exploration framework that uses predicted maps to form <i>probabilistic</i> information gain. Our key insight is to calculate
+          probabilistic information gain that <i>jointly</i> reasons on sensor coverage and uncertainty.
         </h2>
-      </div>
     </div>
   </section>
 
@@ -271,11 +266,11 @@
             <p>
               Exploration is a critical challenge in robotics, centered on understanding unknown environments.
               In this work, we focus on robots exploring structured indoor environments which are often predictable and composed of repeating patterns.
-              Most existing approaches, such as conventional frontier approaches, have difficulty leveraging the predictability and explore with simple heuristics such as `closest first'. 
+              Most existing approaches, such as conventional frontier approaches, have difficulty leveraging the predictability and explore with simple heuristics such as "closest first". 
               Recent works use deep learning techniques to predict unknown regions of the map, using these predictions for information gain calculation. 
               However, these approaches are often sensitive to the predicted map quality or do not reason over sensor coverage. 
               To overcome these issues, our key insight is to jointly reason over what the robot can observe and its uncertainty to calculate probabilistic information gain. 
-              We introduce MapEx, a new exploration framework that uses predicted maps to form probabilistic sensor model for information gain estimation. 
+              We introduce <b>MapEx</b>, a new exploration framework that uses predicted maps to form probabilistic sensor model for information gain estimation. 
               MapEx generates multiple predicted maps based on observed information, and takes into consideration both the computed variances of predicted maps and estimated visible area to estimate the information gain of a given viewpoint. 
               Experiments on the real-world KTH dataset showed on average 12.4% improvement than representative map-prediction based exploration and 25.4% improvement than nearest frontier approach. 
             </p>
@@ -286,12 +281,13 @@
     </div>
   </section>
 
-  <section class="hero is-small">
+  <section class="hero is-small is-light">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
-            <h2 class="title is-3">Map Predictions and <br> Probabilistic Information Gain</h2>
+            <h2 class="title is-3">Insight: Jointly reason on prediction uncertainty and sensor coverage </h2>
+            <p>Tl;dr - Predict multiple maps → estimate uncertainty and sensor coverage → explore to build accurate maps faster</p>
             <div class="buttons is-centered">
               <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(1,1)">Map Predictions</button>
               <button class="button is-link button-shadow" onclick="showContent(2,1)">Raycast</button>
@@ -352,30 +348,35 @@
       </div>
   </section>
   
-  <section class="hero is-small">
+  <section class="hero is-small is-light">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3">Results</h2>
             <div class="buttons is-centered">
-              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(4,2)">Frontier Scoring</button>
-              <button class="button is-link button-shadow" onclick="showContent(5,2)">MapEx vs Baselines</button>
+              <button class="button is-primary line-height-adjust button-shadow" onclick="showContent(4,2)">MapEx vs Baselines</button>
+              <button class="button is-link button-shadow" onclick="showContent(5,2)">Frontier Scoring</button>
               <button class="button is-info button-shadow" onclick="showContent(6,2)">Metrics</button>
             </div>
             <div id="dynamic-content">
               <div class="content-section active" id="content-2-4">
                 <div class="content has-text-justified">
-                  <p>We show examples of MapEx frontier scoring. MapEx jointly reasons on sensor coverage and uncertainty to guide predictions. The left image shows a top-scoring frontier with high sensor coverage with medium uncertainty. In contrast, the right image presents a scenario where MapEx selects a frontier that covers smaller area but has high uncertainty, rather than the one with higher coverage but less potential for learning.</p>
-                  <img src="assets/frontier-scoring.png" alt="Frontier scoring" />
+                  <p>MapEx explores the map best resulting in the most accurate predicted map. In contrast, UPEN which optimizes for
+                    high variance without sensor coverage, searches a limited area. IG-Hector only considers sensor coverage and does
+                    not explore sufficiently at the start due to inadequate map predictions.</p>
+                  <video controls autoplay loop muted width="100%">
+                    <source src="assets/mapex-upen-ighector-video.mp4" type="video/mp4">
+                  </video>
                 </div>
               </div>
               <div class="content-section" id="content-2-5">
                 <div class="content has-text-justified">
-                  <p>MapEx explores the map best resulting in the most accurate predicted map. In contrast, UPEN which optimizes for high variance without sensor coverage, searches a limited area. IG-Hector only considers sensor coverage and does not explore sufficiently at the start due to inadequate map predictions.</p>
-                  <video controls autoplay loop muted width="100%">
-                    <source src="assets/mapex-upen-ighector-video.mp4" type="video/mp4">
-                  </video>
+                  <p>We show examples of MapEx frontier scoring. MapEx jointly reasons on sensor coverage and uncertainty to guide
+                    predictions. The left image shows a top-scoring frontier with high sensor coverage with medium uncertainty. In
+                    contrast, the right image presents a scenario where MapEx selects a frontier that covers smaller area but has high
+                    uncertainty, rather than the one with higher coverage but less potential for learning.</p>
+                  <img src="assets/frontier-scoring.png" alt="Frontier scoring" />
                 </div>
               </div>
               <div class="content-section" id="content-2-6">
@@ -391,7 +392,19 @@
     </div>
   </section>
 
-
+  <section class="hero is-small">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="content has-text-centered">
+            <video controls autoplay loop muted width="100%">
+              <source src="assets/mapex_video.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+  </section>
 
 
   <section class="hero is-small is-light">
